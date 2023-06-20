@@ -8,6 +8,8 @@ import SignupPage from './pages/SignupPage.jsx';
 import MatchPage from './pages/MatchPage.jsx';
 import SwipePage from './pages/SwipePage.jsx';
 
+import '../styles.css';
+
 const router = createBrowserRouter([
   {
     path: '/',

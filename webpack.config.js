@@ -1,5 +1,9 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+const devMode = process.env.NODE_ENV === 'production';
+const styleLoader = devMode ? MiniCssExtractPlugin.loader : 'style-loader';
 
 module.exports = {
   mode: process.env.NODE_ENV,
@@ -9,7 +13,14 @@ module.exports = {
     publicPath: '/',
     filename: 'bundle.js',
   },
-  plugins: [new HtmlWebpackPlugin({ template: './index.html' })],
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './index.html',
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'main.css',
+    }),
+  ],
   module: {
     rules: [
       {
@@ -24,16 +35,11 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
+        use: [styleLoader, 'css-loader', 'postcss-loader'],
       },
       {
-        // import css
         test: /\.s[ac]ss$/i,
-        use: [
-          'style-loader',
-          'css-loader',
-          'sass-loader',
-        ],
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
     ],
   },
@@ -43,5 +49,5 @@ module.exports = {
       '/api/**': 'http://localhost:3000',
     },
     historyApiFallback: true,
-  }
+  },
 };

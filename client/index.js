@@ -8,6 +8,8 @@ import SignupPage from './pages/SignupPage';
 import MatchPage from './pages/MatchPage';
 import SwipePage from './pages/SwipePage';
 
+import '../styles.css';
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -28,7 +30,7 @@ const router = createBrowserRouter([
   {
     path: '/swipe',
     element: <SwipePage />,
-  }
+  },
 ]);
 
 const root = createRoot(document.getElementById('root'));

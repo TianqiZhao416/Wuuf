@@ -3,7 +3,7 @@ const controller  = require('../controller/swipeController');
 const router = express.Router();
 
 // router.post('/', controller.createDog, (req, res) => {
-//     res.status(200).send(res.locals.user);
+//     res.status(200).send(res.locals.user); 
 // })
 
 router.post('/',

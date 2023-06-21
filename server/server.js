@@ -1,31 +1,46 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
-const userRouter = require('./routes/userRoute');
-const controller = require('./controller');
-const router = express.Router();
 const app = express();
+// const oauth = require('./oauth/oauth.js');
+
+
+const dogRoutes = require('./routes/dogRoutes');
+const swipeRoutes = require('./routes/swipeRoutes');
+
 const PORT = 3000;
 
 app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
 
-// Build file
+
+// app.use('/api', router);
+
+
+
+// app.use('/github', oauth);
+
+
+
 app.use('/build', express.static(path.join(__dirname, '../build')));
 app.use('/', express.static(path.join(__dirname, '../client/')));
 
-app.use('/api/user', userRouter);
 
-// Add this line to include the router
-app.use('/api', router);
+app.use('/dog',dogRoutes);
+app.use('/swipe',swipeRoutes);
+
+
+
+
 
 // serve index.html
-router.get('/matches', controller.getMatches, (req, res) => {
-  return res.status(200).json(res.locals.matches);
-});
+// router.get('/matches', controller.getMatches, (req, res) => {
+//   return res.status(200).json(res.locals.matches);
+// });
 
-router.get('/dogs', controller.getAllDogs, (req, res) => {
-    return res.status(200).json(res.locals.listOfDogs);
-});
+// router.get('/dogs', controller.getAllDogs, (req, res) => {
+//     return res.status(200).json(res.locals.listOfDogs);
+// });
 
 app.get('/*', (req, res) => {
     res.status(200).sendFile(path.resolve(__dirname, '../index.html'));

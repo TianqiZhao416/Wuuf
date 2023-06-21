@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import rootReducer from "./reducers";
+// import rootReducer from "./reducers";
+import userSlice from "./Slices/userSlice";
 
 const preloadedState = {
   user: "",
@@ -8,4 +9,4 @@ const preloadedState = {
   profiles: [],
 };
 
-const store = configureStore({ reducer: rootReducer });
+const store = configureStore({ userSlice });

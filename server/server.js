@@ -13,12 +13,7 @@ const PORT = 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
-// app.use('/api', router);
-
-
-
-// app.use('/github', oauth);
+ 
 
 
 
@@ -28,7 +23,7 @@ app.use('/', express.static(path.join(__dirname, '../client/')));
 
 app.use('/dog',dogRoutes);
 app.use('/swipe',swipeRoutes);
-
+// app.use('/github', oauth);
 
 
 
